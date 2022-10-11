@@ -16,7 +16,9 @@
 #define CAMERAPATHDLL
 #include <windows.h>
 #include <commctrl.h>
-#include "..\..\Sources\Datas\CameraPaths.h"
+#include <Structures.h>
+#include "..\..\Includes\CameraPaths.h"
+#include "..\..\Includes\Texts.h"
 
 /*** Variables **********************************************************/
 

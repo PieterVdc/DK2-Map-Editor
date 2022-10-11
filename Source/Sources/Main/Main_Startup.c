@@ -235,7 +235,7 @@ int Initialise_WindowsClasses()
 
 int Initialise_Window(void)
 {
-	hMenu = LoadMenu(hInstance,"MAINMENU");
+	hMenu = CreateMenu_MAINMENU();
 	if (!hMenu)
 		{
 		Misc_PrintError(NULL,szWindowMenuErr,szInitErr,MB_ICONHAND);

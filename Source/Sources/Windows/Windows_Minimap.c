@@ -206,7 +206,7 @@ void Minimap_DrawWindow(DRAWITEMSTRUCT *DrawStruct)
 {
 	HDC		hDC;
 	HBITMAP		hBitmap;
-	register long	Prop;
+	long	Prop;
 
 	if ((DrawStruct->itemAction&ODA_FOCUS)||(DrawStruct->itemAction&ODA_SELECT)) return;
 
@@ -259,10 +259,10 @@ void Minimap_DrawCursor(HDC hDC, LONG MapStartX, LONG MapStartY)
 	POINT		Rect[5];
 	HPEN		hPen,hOldPen;
 	LONG		DX,DY;
-	register float	PX,PY;
-	register float	SX,SY;
-	register float	MX,MY;
-	register long	PropX,PropY;
+	float	PX,PY;
+	float	SX,SY;
+	float	MX,MY;
+	long	PropX,PropY;
 	int		OldMode;
 
 	hPen = CreatePen(PS_SOLID,1,0x00000000);
@@ -333,8 +333,8 @@ int Minimap_MoveCursor(LONG X, LONG Y, BOOL Query)
 	long		B0,B1;
 	long		DX,DY;
 	long		FX,FY;
-	register float	MX,MY;
-	register float	PX,PY;
+	float	MX,MY;
+	float	PX,PY;
 
 	MX = (float)(Config.MinimapSize);
 	MY = (float)(Config.MinimapSize);

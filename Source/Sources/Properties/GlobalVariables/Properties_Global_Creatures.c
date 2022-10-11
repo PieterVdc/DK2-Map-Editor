@@ -56,7 +56,7 @@ void Properties_GlobalCreatures(HWND hWnd)
 		{
 		psp[Result].dwSize = sizeof(PROPSHEETPAGE);
 		psp[Result].hInstance = hInstance;
-		psp[Result].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(6860+Result);
+		psp[Result].pszTemplate = MAKEINTRESOURCE(6860+Result);
 		psp[Result].pfnDlgProc = pfn[Result];
 		psp[Result].lParam = (LPARAM)Context;
 		}
@@ -65,10 +65,10 @@ void Properties_GlobalCreatures(HWND hWnd)
 	psh->dwFlags = PSH_PROPSHEETPAGE|PSH_USEICONID;
 	psh->hwndParent = hWnd;
 	psh->hInstance = hInstance;
-	psh->DUMMYUNIONNAME.pszIcon = MAKEINTRESOURCE(1);
+	psh->pszIcon = MAKEINTRESOURCE(1);
 	psh->pszCaption = szGlobalCreatures;
 	psh->nPages = 9;
-	psh->DUMMYUNIONNAME3.ppsp = psp;
+	psh->ppsp = psp;
 
 	if (!Misc_CreateImageList(GCreatures,&Context->CreaturesImages,32,32,FALSE))
 		goto Error_4;

@@ -11,6 +11,8 @@
 // ¤¤¤									  ¤¤¤ //
 // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤ //
 
+#include <dsound.h>
+#include <Sounds.h>
 #include "..\Includes\Editor.h"
 #include "..\Includes\Prototypes.h"
 #include "..\Includes\Structures.h"

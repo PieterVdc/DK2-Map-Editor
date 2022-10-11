@@ -34,9 +34,9 @@ HBITMAP Thumbnail_GenerateExt(HWND hWnd, MAP *Map, HBITMAP Thumbnail, THUMBOPTS 
 	HDC		 hThumbDC;
 	HBITMAP		 hThumbBitmap = NULL;
 	HBITMAP		 hThumbOldBitmap;
-	register BYTE	*MapPtr,*LinePtr;
-	register DWORD	 PixelColor;
-	register long	 i,j;
+	BYTE	*MapPtr,*LinePtr;
+	DWORD	 PixelColor;
+	long	 i,j;
 
 	hDC = GetDC(hWnd);
 	if (hDC)
@@ -280,9 +280,9 @@ HBITMAP Thumbnail_Generate(HWND hWnd, MAP *Map, HBITMAP Thumbnail)
 	HDC		 hThumbDC;
 	HBITMAP		 hThumbBitmap = NULL;
 	HBITMAP		 hThumbOldBitmap;
-	register BYTE	*MapPtr,*LinePtr;
-	register DWORD	 PixelColor;
-	register long	 i,j;
+	BYTE	*MapPtr,*LinePtr;
+	DWORD	 PixelColor;
+	long	 i,j;
 
 	hDC = GetDC(hWnd);
 	if (hDC)

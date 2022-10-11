@@ -794,14 +794,14 @@ int Undo_HistoryBuildList(HWND hList, NODE *List, HTREEITEM hParent)
 	UNDO		*Undo;
 
 	Item.hInsertAfter = TVI_LAST;
-	Item.DUMMYUNIONNAME.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN;
+	Item.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN;
 
 	for (Undo = (UNDO *)List; Undo != 0; Undo = (UNDO *)Undo->node.next)
 		{
 		Item.hParent = hParent;
-		Item.DUMMYUNIONNAME.item.pszText = Undo->description;
-		Item.DUMMYUNIONNAME.item.cChildren = (Undo->childs.next)?1:0;
-		Item.DUMMYUNIONNAME.item.lParam = (LPARAM)Undo;
+		Item.item.pszText = Undo->description;
+		Item.item.cChildren = (Undo->childs.next)?1:0;
+		Item.item.lParam = (LPARAM)Undo;
 		if ((hItem = (HTREEITEM)SendMessage(hList,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Item)) == NULL) return(0);
 		if ((Undo->childs.next)&&(!Undo_HistoryBuildList(hList,Undo->childs.next,hItem))) return(0);
 		}

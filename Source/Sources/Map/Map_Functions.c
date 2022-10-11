@@ -91,8 +91,8 @@ DWORD Map_GetRealIDFromMap(BYTE *MapPtr)
 
 DWORD Map_TranslateWorldItem()
 {
-	register DWORD	MapFullID;
-	register BYTE	MapID;
+	DWORD	MapFullID;
+	BYTE	MapID;
 
 	if ((MapID = Map_TranslateID((BYTE)(WorldItemID>>24),(BYTE)(WorldItemID>>8),World)) != (BYTE)-1)
 		{

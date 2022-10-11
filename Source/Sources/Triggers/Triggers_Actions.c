@@ -88,14 +88,14 @@ void Triggers_ActionNew(HWND hDlg, TRIGGERSCTX *Context)
 
 	psp[0].dwSize = sizeof(PROPSHEETPAGE);
 	psp[0].hInstance = hInstance;
-	psp[0].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(7200);
+	psp[0].pszTemplate = MAKEINTRESOURCE(7200);
 	psp[0].pfnDlgProc = Triggers_ActionDlgList;
 	psp[0].lParam = (LPARAM)Context;
 	for (Result = 1; Result != Count+1; Result++)
 		{
 		psp[Result].dwSize = sizeof(PROPSHEETPAGE);
 		psp[Result].hInstance = hInstance;
-		psp[Result].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(Actions[Result-1].dialog);
+		psp[Result].pszTemplate = MAKEINTRESOURCE(Actions[Result-1].dialog);
 		psp[Result].pfnDlgProc = Triggers_ActionDlgParams;
 		psp[Result].lParam = (LPARAM)Context;
 		}
@@ -104,10 +104,10 @@ void Triggers_ActionNew(HWND hDlg, TRIGGERSCTX *Context)
 	psh->dwFlags = PSH_PROPSHEETPAGE|PSH_USEICONID|PSH_WIZARD;
 	psh->hwndParent = hDlg;
 	psh->hInstance = hInstance;
-	psh->DUMMYUNIONNAME.pszIcon = MAKEINTRESOURCE(1);
+	psh->pszIcon = MAKEINTRESOURCE(1);
 	psh->pszCaption = NULL;
 	psh->nPages = Count+1;
-	psh->DUMMYUNIONNAME3.ppsp = psp;
+	psh->ppsp = psp;
 
 	if (!Misc_CreateImageList(TrSpecial,&Context->Images,32,32,FALSE)) goto Error_2;
 	if (!Misc_CreateImageList(BadCreatures,&Context->Images,32,32,TRUE)) goto Error_2;
@@ -1943,10 +1943,10 @@ Loop:	TextBuffer = GlobalAlloc(GPTR,4096);
 	NewAction = GlobalAlloc(GPTR,sizeof(ACTION));
 	if (!NewAction) goto Error_1;
 
-	Parent.DUMMYUNIONNAME.item.mask = TVIF_PARAM;
-	Parent.DUMMYUNIONNAME.item.lParam = 0;
-	Parent.DUMMYUNIONNAME.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_CARET,(LPARAM)TVI_ROOT);
-	if (Parent.DUMMYUNIONNAME.item.hItem) SendMessage(Context->List,TVM_GETITEM,(WPARAM)0,(LPARAM)&Parent.DUMMYUNIONNAME.item);
+	Parent.item.mask = TVIF_PARAM;
+	Parent.item.lParam = 0;
+	Parent.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_CARET,(LPARAM)TVI_ROOT);
+	if (Parent.item.hItem) SendMessage(Context->List,TVM_GETITEM,(WPARAM)0,(LPARAM)&Parent.item);
 
 	//--- Modifie un déclencheur ---
 
@@ -1954,72 +1954,72 @@ Loop:	TextBuffer = GlobalAlloc(GPTR,4096);
 		{
 		GlobalFree(NewAction);
 		CopyMemory(Context->ActionCtx.SrceAction,&Context->ActionCtx.TempAction,sizeof(ACTION));
-		Parent.DUMMYUNIONNAME.item.mask = TVIF_TEXT;
-		Parent.DUMMYUNIONNAME.item.pszText = Triggers_FmtActionText(Context->ActionCtx.SrceAction,TextBuffer,TextBuffer+2048);
-		if (Parent.DUMMYUNIONNAME.item.lParam) SendMessage(Context->List,TVM_SETITEM,(WPARAM)0,(LPARAM)&Parent.DUMMYUNIONNAME.item);
+		Parent.item.mask = TVIF_TEXT;
+		Parent.item.pszText = Triggers_FmtActionText(Context->ActionCtx.SrceAction,TextBuffer,TextBuffer+2048);
+		if (Parent.item.lParam) SendMessage(Context->List,TVM_SETITEM,(WPARAM)0,(LPARAM)&Parent.item);
 		goto Done;
 		}
 
 	//--- Ajoute ou insère un déclencheur ---
 
-	if ((Context->Insert)&&(Parent.DUMMYUNIONNAME.item.lParam))
+	if ((Context->Insert)&&(Parent.item.lParam))
 		{
 		CopyMemory(NewAction,&Context->ActionCtx.TempAction,sizeof(ACTION));
 		NewAction->id = Triggers_GetActionFreeId();
-		Parent.hParent = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PARENT,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
-		Parent.hInsertAfter = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PREVIOUS,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
+		Parent.hParent = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PARENT,(LPARAM)Parent.item.hItem);
+		Parent.hInsertAfter = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PREVIOUS,(LPARAM)Parent.item.hItem);
 		if (!Parent.hInsertAfter) Parent.hInsertAfter = TVI_FIRST;
-		Parent.DUMMYUNIONNAME.item.hItem = NULL;
-		Parent.DUMMYUNIONNAME.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
-		Parent.DUMMYUNIONNAME.item.pszText = Triggers_FmtActionText(NewAction,TextBuffer,TextBuffer+2048);
-		Parent.DUMMYUNIONNAME.item.iImage = 1;
-		Parent.DUMMYUNIONNAME.item.iSelectedImage = 1;
-		Parent.DUMMYUNIONNAME.item.cChildren = 0;
-		Parent.DUMMYUNIONNAME.item.lParam = (LPARAM)NewAction;
-		Parent.DUMMYUNIONNAME.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Parent);
-		if (!Parent.DUMMYUNIONNAME.item.hItem) goto Error_2;
+		Parent.item.hItem = NULL;
+		Parent.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
+		Parent.item.pszText = Triggers_FmtActionText(NewAction,TextBuffer,TextBuffer+2048);
+		Parent.item.iImage = 1;
+		Parent.item.iSelectedImage = 1;
+		Parent.item.cChildren = 0;
+		Parent.item.lParam = (LPARAM)NewAction;
+		Parent.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Parent);
+		if (!Parent.item.hItem) goto Error_2;
 		}
 	else
 		{
 		CopyMemory(NewAction,&Context->ActionCtx.TempAction,sizeof(ACTION));
 		NewAction->id = Triggers_GetActionFreeId();
-		if (Parent.DUMMYUNIONNAME.item.lParam)
+		if (Parent.item.lParam)
 			{
-			if (((NODE *)Parent.DUMMYUNIONNAME.item.lParam)->type == TYPE_TRIGGER)
-				Parent.hParent = Parent.DUMMYUNIONNAME.item.hItem;
+			if (((NODE *)Parent.item.lParam)->type == TYPE_TRIGGER)
+				Parent.hParent = Parent.item.hItem;
 			else
-				Parent.hParent = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PARENT,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);			Parent.hInsertAfter = TVI_LAST;
+				Parent.hParent = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PARENT,(LPARAM)Parent.item.hItem);			Parent.hInsertAfter = TVI_LAST;
 			}
 		else
 			{
 			Parent.hParent = TVI_ROOT;
 			Parent.hInsertAfter = TVI_LAST;
 			}
-		Parent.DUMMYUNIONNAME.item.hItem = NULL;
-		Parent.DUMMYUNIONNAME.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
-		Parent.DUMMYUNIONNAME.item.pszText = Triggers_FmtActionText(NewAction,TextBuffer,TextBuffer+2048);
-		Parent.DUMMYUNIONNAME.item.iImage = 1;
-		Parent.DUMMYUNIONNAME.item.iSelectedImage = 1;
-		Parent.DUMMYUNIONNAME.item.cChildren = 0;
-		Parent.DUMMYUNIONNAME.item.lParam = (LPARAM)NewAction;
-		Parent.DUMMYUNIONNAME.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Parent);
-		if (!Parent.DUMMYUNIONNAME.item.hItem) goto Error_2;
+		Parent.item.hItem = NULL;
+		Parent.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
+		Parent.item.pszText = Triggers_FmtActionText(NewAction,TextBuffer,TextBuffer+2048);
+		Parent.item.iImage = 1;
+		Parent.item.iSelectedImage = 1;
+		Parent.item.cChildren = 0;
+		Parent.item.lParam = (LPARAM)NewAction;
+		Parent.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Parent);
+		if (!Parent.item.hItem) goto Error_2;
 		}
 
 	//--- Lie le déclencheur aux entrée précédentes ---
 
 	List_AddEntry((NODE *)NewAction,&MapActions);
-	if (!Triggers_SelectLink(NewAction,Context->ActionCtx.ParentPoint,Parent.DUMMYUNIONNAME.item.hItem,Context)) goto Error_3;
+	if (!Triggers_SelectLink(NewAction,Context->ActionCtx.ParentPoint,Parent.item.hItem,Context)) goto Error_3;
 
 	#if (DEBUG_EVENTS)
-	Parent.DUMMYUNIONNAME.item.mask = TVIF_TEXT;
-	Parent.DUMMYUNIONNAME.item.pszText = Triggers_FmtActionText(NewAction,TextBuffer,TextBuffer+2048);
-	SendMessage(Context->List,TVM_SETITEM,(WPARAM)0,(LPARAM)&Parent.DUMMYUNIONNAME.item);
+	Parent.item.mask = TVIF_TEXT;
+	Parent.item.pszText = Triggers_FmtActionText(NewAction,TextBuffer,TextBuffer+2048);
+	SendMessage(Context->List,TVM_SETITEM,(WPARAM)0,(LPARAM)&Parent.item);
 	#endif
 
 //--- Terminé... ----
 
-Done:	SendMessage(Context->List,TVM_SELECTITEM,(WPARAM)TVGN_CARET,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
+Done:	SendMessage(Context->List,TVM_SELECTITEM,(WPARAM)TVGN_CARET,(LPARAM)Parent.item.hItem);
 	GlobalFree(TextBuffer);
 	MapChanges++;
 
@@ -2048,7 +2048,7 @@ Done:	SendMessage(Context->List,TVM_SELECTITEM,(WPARAM)TVGN_CARET,(LPARAM)Parent
 //--- Erreurs ---
 
 Error_3:List_RemEntry((NODE *)NewAction);
-	SendMessage(Context->List,TVM_DELETEITEM,(WPARAM)0,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
+	SendMessage(Context->List,TVM_DELETEITEM,(WPARAM)0,(LPARAM)Parent.item.hItem);
 Error_2:GlobalFree(NewAction);
 Error_1:GlobalFree(TextBuffer);
 Error_0:Misc_MessageBoxExt(hDlg,szTriggersNewActionErr,NULL,szMessageBoxExtOk,MB_ICONHAND);

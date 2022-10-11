@@ -33,8 +33,8 @@ extern GLOBALVARS	MapGlobalVariables;
 
 LONG Compiler_InfoEnumTerrainInRect(DWORD TerrainID, DWORD TerrainMask, DWORD Flags, MAPRECT *MapRect)
 {
-	register BYTE	*MapPtr;
-	register BYTE	*MapLinePtr;
+	BYTE	*MapPtr;
+	BYTE	*MapLinePtr;
 	DWORD		 MapID;
 	LONG		 Result;
 	LONG		 X,Y;
@@ -103,8 +103,8 @@ LONG Compiler_InfoEnumTerrainInRect(DWORD TerrainID, DWORD TerrainMask, DWORD Fl
 
 LONG Compiler_InfoManaInRect(UINT Player, MAPRECT *MapRect)
 {
-	register BYTE	*MapPtr;
-	register BYTE	*MapLinePtr;
+	BYTE	*MapPtr;
+	BYTE	*MapLinePtr;
 	UINT		 ID;
 	LONG		 VarPtr;
 	LONG		 RoomsMana;
@@ -189,8 +189,8 @@ LONG Compiler_InfoManaInRect(UINT Player, MAPRECT *MapRect)
 
 LONG Compiler_InfoRoomInRect(UINT Player, MAPRECT *MapRect)
 {
-	register BYTE	*MapPtr;
-	register BYTE	*MapLinePtr;
+	BYTE	*MapPtr;
+	BYTE	*MapLinePtr;
 	LONG		 Result;
 	LONG		 X,Y;
 
@@ -223,8 +223,8 @@ LONG Compiler_InfoRoomInRect(UINT Player, MAPRECT *MapRect)
 
 LONG Compiler_InfoTreasuryCapacityInRect(UINT Player, MAPRECT *MapRect)
 {
-	register BYTE	*MapPtr;
-	register BYTE	*MapLinePtr;
+	BYTE	*MapPtr;
+	BYTE	*MapLinePtr;
 	LONG		 Result;
 	LONG		 X,Y;
 
@@ -292,8 +292,8 @@ LONG Compiler_InfoCreaturesCountInRect(UINT Player, DWORD Flags, MAPRECT *MapRec
 LONG Compiler_InfoGoldAmountInRect(DWORD Flags, BOOL *Gems, MAPRECT *MapRect)
 {
 	MAPTHING	*MapThing;
-	register BYTE	*MapPtr;
-	register BYTE	*MapLinePtr;
+	BYTE	*MapPtr;
+	BYTE	*MapLinePtr;
 	LONG		 Result;
 	LONG		 Gold;
 	LONG		 X,Y;
@@ -416,8 +416,8 @@ Set_NorthHorizontalGate:
 
 int Compiler_InfoHeartPosition(UINT Player, LONG *ResultX, LONG *ResultY)
 {
-	register BYTE	*MapPtr;
-	register BYTE	*MapLinePtr;
+	BYTE	*MapPtr;
+	BYTE	*MapLinePtr;
 	LONG		 X,Y;
 
 	MapPtr = Map.Map;

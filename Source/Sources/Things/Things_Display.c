@@ -238,8 +238,8 @@ void Things_DrawCreatures(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStar
 	LONG			 Keeper3Count;
 	LONG			 Keeper4Count;
 	LONG			 Keeper5Count;
-	register MAPTHING	*Creatures;
-	register LONG		 X,Y;
+	MAPTHING	*Creatures;
+	LONG		 X,Y;
 
 	if (MapLocked) return;
 	if (!(Config.MapViewFlags&MVF_CREATURES)) return;
@@ -348,8 +348,8 @@ void Things_DrawCreaturesNumber(HDC hDC, LONG Number, COLORREF Color)
 
 void Things_DrawDoors(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStartX, LONG MapStartY)
 {
-	register MAPTHING	*Doors;
-	register RECT		 ClientRect;
+	MAPTHING	*Doors;
+	RECT		 ClientRect;
 	HBRUSH			 PlayerBrush,OldBrush;
 	BYTE			*MapPtrU;
 	BYTE			*MapPtrD;
@@ -529,9 +529,9 @@ void Things_DrawDoors(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStartX, 
 
 void Things_DrawTraps(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStartX, LONG MapStartY)
 {
-	register RECT	 ClientRect;
-	register MAPTHING	*Traps;
-	register BYTE	*MapPtr;
+	RECT	 ClientRect;
+	MAPTHING	*Traps;
+	BYTE	*MapPtr;
 	HBRUSH		 PlayerBrush,OldBrush;
 	HPEN			 PaintPen,OldPen;
 	LONG			 FX1,FY1;
@@ -622,8 +622,8 @@ void Things_DrawTraps(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStartX, 
 
 void Things_DrawObjects(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStartX, LONG MapStartY)
 {
-	register RECT	 ClientRect;
-	register MAPTHING	*Objects;
+	RECT	 ClientRect;
+	MAPTHING	*Objects;
 	HBRUSH		 Brush,OldBrush;
 	LONG			 FX3,FY3;
 	LONG			 MX,MY;
@@ -683,8 +683,8 @@ void Things_DrawObjects(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStartX
 
 void Things_DrawMagicalObjects(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStartX, LONG MapStartY)
 {
-	register RECT	 ClientRect;
-	register MAPTHING	*Objects;
+	RECT	 ClientRect;
+	MAPTHING	*Objects;
 	HPEN			 PaintPen,OldPen;
 	HBRUSH		 Brush,OldBrush;
 	LONG			 FX3,FY3;
@@ -757,7 +757,7 @@ void Things_DrawMagicalObjects(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG Ma
 
 void Things_DrawAreas(HWND hWnd, HDC hDC)
 {
-	register MAPRECTEX	*Areas;
+	MAPRECTEX	*Areas;
 
 	if (MapLocked) return;
 	if (!(Config.MapViewFlags&MVF_AREAS)) return;
@@ -774,7 +774,7 @@ void Things_DrawAreas(HWND hWnd, HDC hDC)
 
 void Things_DrawEffects(HWND hWnd, HDC hDC)
 {
-	register MAPRECTEX	*Effects;
+	MAPRECTEX	*Effects;
 
 	if (MapLocked) return;
 	if (!(Config.MapViewFlags&MVF_EFFECTS)) return;
@@ -798,8 +798,8 @@ void Things_DrawPaths(HWND hWnd, HDC hDC)
 	POINT			 Area2Pt;
 	HPEN			 hPen,hOldPen;
 	HBRUSH			 hOldBrush;
-	register MAPRECTEX	*Area1;
-	register MAPRECTEX	*Area2;
+	MAPRECTEX	*Area1;
+	MAPRECTEX	*Area2;
 
 	if (MapLocked) return;
 	if (!(Config.MapViewFlags&MVF_PATHS)) return;
@@ -866,8 +866,8 @@ void Things_DrawPaths(HWND hWnd, HDC hDC)
 
 void Things_DrawGates(HWND hWnd, HDC hDC)
 {
-	register MAPRECTEX	*Gates;
-	register MAPRECT	 Rectangle;
+	MAPRECTEX	*Gates;
+	MAPRECT	 Rectangle;
 
 	if (MapLocked) return;
 	if (!(Config.MapViewFlags&MVF_GATES)) return;

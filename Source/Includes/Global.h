@@ -1,4 +1,7 @@
 
+#ifndef EDITOR_GLOBAL_H
+#define EDITOR_GLOBAL_H
+
 /*** Identificateurs ****************************************************/
 
 #define WM_PAINTMAP		WM_USER+1
@@ -89,3 +92,5 @@ typedef struct TREELIST {
 	DWORD		 Selected;
 	HTREEITEM	*SelectedItem;
 } TREELIST;
+
+#endif //EDITOR_GLOBAL_H

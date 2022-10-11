@@ -1,4 +1,7 @@
 
+#ifndef EDITOR_CAMERAPATHS_H
+#define EDITOR_CAMERAPATHS_H
+
 /*** Définitions ********************************************************/
 
 typedef struct CAMERAPATH {
@@ -13,3 +16,4 @@ typedef struct CAMERAPATHDESC {
 	BOOL	 ShowCell;
 } CAMERAPATHDESC;
 
+#endif //EDITOR_CAMERAPATHS_H

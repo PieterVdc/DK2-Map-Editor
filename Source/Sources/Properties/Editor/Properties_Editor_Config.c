@@ -344,16 +344,16 @@ void Config_GetDisplayName(LPITEMIDLIST Object, STRRET *Name, char *TempName)
 			NameBuffer = (char *)ShellAlloc->lpVtbl->Alloc(ShellAlloc,MAX_PATH);
 			if (NameBuffer != 0)
 				{
-				wcstombs(NameBuffer,Name->DUMMYUNIONNAME.pOleStr,MAX_PATH);
+				wcstombs(NameBuffer,Name->pOleStr,MAX_PATH);
 				strcpy(TempName,NameBuffer);
 				ShellAlloc->lpVtbl->Free(ShellAlloc,NameBuffer);
 				}
 			break;
 		case STRRET_OFFSET:
-			strcpy(TempName,((char *)Object)+(Name->DUMMYUNIONNAME.uOffset));
+			strcpy(TempName,((char *)Object)+(Name->uOffset));
 			break;
 		case STRRET_CSTR:
-			strcpy(TempName,Name->DUMMYUNIONNAME.cStr);
+			strcpy(TempName,Name->cStr);
 			break;
 		}
 

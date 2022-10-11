@@ -174,32 +174,32 @@ int RectEx_PathsRedrawAll(MAPRECTEXPATHCTX *Context)
 		{
 		Item.hParent = TVI_ROOT;
 		Item.hInsertAfter = TVI_LAST;
-		Item.DUMMYUNIONNAME.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN|TVIF_STATE;
-		Item.DUMMYUNIONNAME.item.stateMask = TVIS_EXPANDED;
-		Item.DUMMYUNIONNAME.item.state = TVIS_EXPANDED;
-		Item.DUMMYUNIONNAME.item.pszText = (char *)szPathList;
-		Item.DUMMYUNIONNAME.item.cChildren = 1;
-		Item.DUMMYUNIONNAME.item.lParam = (LPARAM)Path;
+		Item.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN|TVIF_STATE;
+		Item.item.stateMask = TVIS_EXPANDED;
+		Item.item.state = TVIS_EXPANDED;
+		Item.item.pszText = (char *)szPathList;
+		Item.item.cChildren = 1;
+		Item.item.lParam = (LPARAM)Path;
 		Item.hParent = (HTREEITEM)SendMessage(Context->hpathslist,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Item);
 		if (!Item.hParent) goto Error_0;
 		for (X = 0; Path->areas[X] != 0; X++)
 			{
 			Area = RectEx_FindById(Path->areas[X],&MapAreas);
-			Item.DUMMYUNIONNAME.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN;
-			Item.DUMMYUNIONNAME.item.cChildren = 0;
-			Item.DUMMYUNIONNAME.item.lParam = Path->areas[X];
+			Item.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN;
+			Item.item.cChildren = 0;
+			Item.item.lParam = Path->areas[X];
 			if (Area)
 				{
 				RectEx_StrCpy(Context->name+2048,Area->name);
 				RectEx_StrCpy(Context->name+2048+MAP_RECTMAXNAME,Area->info);
 				if (Area->info[0]) wsprintf(Context->name,szPathAreaInfo,Area->waitdelay,Area->id,Context->name+2048,Context->name+2048+MAP_RECTMAXNAME);
 				else wsprintf(Context->name,szPathAreaNoInfo,Area->waitdelay,Area->id,Context->name+2048);
-				Item.DUMMYUNIONNAME.item.pszText = Context->name;
+				Item.item.pszText = Context->name;
 				}
 			else
 				{
 				wsprintf((char *)Context->temp,szPathArea,Path->areas[X]);
-				Item.DUMMYUNIONNAME.item.pszText = (char *)Context->temp;
+				Item.item.pszText = (char *)Context->temp;
 				}
 			if (!SendMessage(Context->hpathslist,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Item)) goto Error_0;
 			}
@@ -529,12 +529,12 @@ void RectEx_PathsCreateNewPath(HWND hDlg, MAPRECTEXPATHCTX *Context)
 
 	Item.hParent = TVI_ROOT;
 	Item.hInsertAfter = TVI_LAST;
-	Item.DUMMYUNIONNAME.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN|TVIF_STATE;
-	Item.DUMMYUNIONNAME.item.stateMask = TVIS_EXPANDED;
-	Item.DUMMYUNIONNAME.item.state = TVIS_EXPANDED;
-	Item.DUMMYUNIONNAME.item.pszText = szPathList;
-	Item.DUMMYUNIONNAME.item.cChildren = 1;
-	Item.DUMMYUNIONNAME.item.lParam = (LPARAM)Path;
+	Item.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN|TVIF_STATE;
+	Item.item.stateMask = TVIS_EXPANDED;
+	Item.item.state = TVIS_EXPANDED;
+	Item.item.pszText = szPathList;
+	Item.item.cChildren = 1;
+	Item.item.lParam = (LPARAM)Path;
 	Item.hParent = (HTREEITEM)SendMessage(Context->hpathslist,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Item);
 	if (!Item.hParent) goto Error_1;
 
@@ -816,21 +816,21 @@ void RectEx_PathsAddArea(HWND hDlg, BOOL InsertPoint, MAPRECTEXPATHCTX *Context)
 
 	Area = RectEx_FindById(Context->area,&MapAreas);
 	Insert.hParent = Parent.hItem;
-	Insert.DUMMYUNIONNAME.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN;
-	Insert.DUMMYUNIONNAME.item.cChildren = 0;
-	Insert.DUMMYUNIONNAME.item.lParam = Context->area;
+	Insert.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_CHILDREN;
+	Insert.item.cChildren = 0;
+	Insert.item.lParam = Context->area;
 	if (Area)
 		{
 		RectEx_StrCpy(Context->name+2048,Area->name);
 		RectEx_StrCpy(Context->name+2048+MAP_RECTMAXNAME,Area->info);
 		if (Area->info[0]) wsprintf(Context->name,szPathAreaInfo,Area->waitdelay,Area->id,Context->name+2048,Context->name+2048+MAP_RECTMAXNAME);
 		else wsprintf(Context->name,szPathAreaNoInfo,Area->waitdelay,Area->id,Context->name+2048);
-		Insert.DUMMYUNIONNAME.item.pszText = Context->name;
+		Insert.item.pszText = Context->name;
 		}
 	else
 		{
 		wsprintf((char *)Context->temp,szPathArea,Context->area);
-		Insert.DUMMYUNIONNAME.item.pszText = (char *)Context->temp;
+		Insert.item.pszText = (char *)Context->temp;
 		}
 
 	MapChanges++;

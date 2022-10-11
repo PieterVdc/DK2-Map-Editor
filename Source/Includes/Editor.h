@@ -58,4 +58,8 @@
 #include "Compatibility.h"
 #include "Debug.h"
 
+#define strncmpi(s1, s2, size) strnicmp(s1, s2, size)
+#define randomize() srand(time(NULL))
+#define random(val) rand() % val
+
 #endif

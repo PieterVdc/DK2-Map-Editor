@@ -1,4 +1,7 @@
 
+#ifndef EDITOR_GLOBALVARIABLES_H
+#define EDITOR_GLOBALVARIABLES_H
+
 /*** Drapeaux ***********************************************************/
 
 //--- Fonction d'initialisation ---
@@ -414,3 +417,4 @@ typedef struct GLOBALCTX2 {
 	char		 TempText[1024];
 } GLOBALCTX2;
 
+#endif //EDITOR_GLOBALVARIABLES_H

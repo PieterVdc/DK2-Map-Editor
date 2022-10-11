@@ -1,4 +1,5 @@
 
+#include <windows.h>
 #include "..\..\Includes\Version.h"
 #include "..\..\Includes\Strings.h"
 

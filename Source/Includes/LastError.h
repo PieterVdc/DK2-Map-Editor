@@ -1,4 +1,7 @@
 
+#ifndef EDITOR_LASTERROR_H
+#define EDITOR_LASTERROR_H
+
 /*** Valeurs de précompilation ******************************************/
 
 #define COMPILERR_MAPALLOC	103
@@ -16,3 +19,4 @@ typedef struct ERRORTABLE {
 	char		*ErrorText;
 } ERRORTABLE;
 
+#endif //EDITOR_LASTERROR_H

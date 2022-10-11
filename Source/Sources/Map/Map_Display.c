@@ -96,8 +96,8 @@ void Map_Refresh()
 
 void Map_Paint(HWND hWnd, HDC hDC)
 {
-	register BYTE	*MapPtr;
-	register BYTE	*MapSavedPtr;
+	BYTE	*MapPtr;
+	BYTE	*MapSavedPtr;
 	HIMAGELIST	 MapImageList;
 	RECT		 MapRect;
 	RECT		 ClipRect;
@@ -211,8 +211,8 @@ void Map_DrawRectangle(HWND hWnd, HDC hDC, MAPRECT *Rect)
 {
 	RECT			MapArea;
 	HPEN			RectPen,OldPen;
-	register MAPRECT	MapRect;
-	register POINT		Limits[5];
+	MAPRECT	MapRect;
+	POINT		Limits[5];
 	long			DX,DY;
 
 	if (MapLocked) return;
@@ -347,11 +347,11 @@ void Map_PaintCursor(HWND hWnd, HDC hDC, MAPRECT *Rect, MAPCURSOR *Cursor, BOOL 
 	ELEMENT			*MapTable;
 	MAPCURSOR		*MapTableCursor;
 	MAPCLIENT		 MapClient;
-	register BYTE		*MapPtr;
-	register BYTE		 MapTableOffset;
-	register long		 SX,SY;
-	register long		 X,Y;
-	register long		 i,j;
+	BYTE		*MapPtr;
+	BYTE		 MapTableOffset;
+	long		 SX,SY;
+	long		 X,Y;
+	long		 i,j;
 
 	if (Rect->hidden) return;
 	if (MapLocked) return;
@@ -536,9 +536,9 @@ void Map_FillArea(HWND hWnd, LONG X, LONG Y)
 	BOOL		 Restart;
 	DWORD		 MapFullID;
 	DWORD		 MapDestID;
-	register BYTE	 MapID;
-	register BYTE	*MapPtr,*MapLineBegin,*MapLineEnd;
-	register long	 i;
+	BYTE	 MapID;
+	BYTE	*MapPtr,*MapLineBegin,*MapLineEnd;
+	long	 i;
 
 	//--- Initialisations ---
 
@@ -693,9 +693,9 @@ Fill_Loop2:
 void Map_PaintElementSimple(HWND hWnd, LONG X, LONG Y)
 {
 	MAPCLIENT	 MapClient;
-	register DWORD	 MapFullID;
-	register BYTE	 MapID;
-	register BYTE	*MapPtr;
+	DWORD	 MapFullID;
+	BYTE	 MapID;
+	BYTE	*MapPtr;
 
 	MapPtr = Map_GetMapPtrFromClientPt(hWnd,X,Y);
 	MapFullID = Map_TranslateWorldItem();
@@ -729,12 +729,12 @@ void Map_PaintElementSimple(HWND hWnd, LONG X, LONG Y)
 
 void Map_PaintElement(HWND hWnd, DWORD FillMode)
 {
-	register MAPCLIENT	 MapClient;
-	register DWORD		 MapFullID;
-	register BYTE		*MapPtr;
-	register BYTE		 MapID;
-	register long		 i,j;
-	register long		 X,Y;
+	MAPCLIENT	 MapClient;
+	DWORD		 MapFullID;
+	BYTE		*MapPtr;
+	BYTE		 MapID;
+	long		 i,j;
+	long		 X,Y;
 	int			 rnd;
 
 	//--- Initialisations ---
@@ -773,6 +773,7 @@ void Map_PaintElement(HWND hWnd, DWORD FillMode)
 		case PAINTMODE_CIRCLERND:
 		case PAINTMODE_CIRCLEFILLRND:
 		case PAINTMODE_LINERND:
+
 			randomize();
 			for (Y = MapClient.Y, i = 0; i != MapClient.Height; i++, Y++)
 				for (X = MapClient.X, j = 0; j != MapClient.Width; j++, X++)

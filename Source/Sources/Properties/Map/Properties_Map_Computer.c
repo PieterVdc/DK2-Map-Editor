@@ -50,7 +50,7 @@ void Properties_MapComputerOptions(HWND hDlg, MAPPROPSCTX *MapProps)
 		{
 		psp[Result].dwSize = sizeof(PROPSHEETPAGE);
 		psp[Result].hInstance = hInstance;
-		psp[Result].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(6810+Result);
+		psp[Result].pszTemplate = MAKEINTRESOURCE(6810+Result);
 		psp[Result].pfnDlgProc = pfn[Result];
 		psp[Result].lParam = (LPARAM)MapProps;
 		}
@@ -59,10 +59,10 @@ void Properties_MapComputerOptions(HWND hDlg, MAPPROPSCTX *MapProps)
 	psh->dwFlags = PSH_PROPSHEETPAGE|PSH_USEICONID;
 	psh->hwndParent = hDlg;
 	psh->hInstance = hInstance;
-	psh->DUMMYUNIONNAME.pszIcon = MAKEINTRESOURCE(1);
+	psh->pszIcon = MAKEINTRESOURCE(1);
 	psh->pszCaption = szCfgCPU;
 	psh->nPages = 9;
-	psh->DUMMYUNIONNAME3.ppsp = psp;
+	psh->ppsp = psp;
 
 	CopyMemory(&MapProps->CurrentPlayerCPUSettings,&MapProps->CurrentPlayer,sizeof(MAPOPTIONS));
 	for (Result = 0; Result != 9; Result++) MapProps->PageInitialized[Result] = FALSE;

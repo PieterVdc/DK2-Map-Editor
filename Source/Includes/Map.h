@@ -1,4 +1,7 @@
 
+#ifndef EDITOR_MAP_H
+#define EDITOR_MAP_H
+
 /*** Valeurs par défaut *************************************************/
 
 #define MAP_CONTROLBYTES	4
@@ -327,3 +330,4 @@ typedef struct MAPPROPSTEXT {
 	char		 textpreview[128];
 } MAPPROPSTEXT;
 
+#endif //EDITOR_MAP_H

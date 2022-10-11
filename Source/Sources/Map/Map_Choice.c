@@ -745,8 +745,8 @@ void Map_ChoosePointPaintInfo(DRAWITEMSTRUCT *ItemStruct, MAPCHOOSEPOINTCTX *Con
 
 void Map_ChoosePointPaintMap(HDC hDC, RECT *MapRect, LONG DX, LONG DY, LONG MapStartX, LONG MapStartY)
 {
-	register BYTE	*MapPtr;
-	register BYTE	*MapSavedPtr;
+	BYTE	*MapPtr;
+	BYTE	*MapSavedPtr;
 	HIMAGELIST	 MapImageList;
 	RECT		 ClipRect;
 	LONG		 MX,MY;
@@ -909,8 +909,8 @@ void Map_ChoosePointDrawRectangle(HWND hDlg, HDC hDC, MAPRECT *Rect, LONG MapSta
 {
 	RECT			MapArea;
 	HPEN			RectPen,OldPen;
-	register POINT		Limits[5];
-	register MAPRECT	MapRect;
+	POINT		Limits[5];
+	MAPRECT	MapRect;
 	long			DX,DY;
 
 	if (Rect->hidden) return;

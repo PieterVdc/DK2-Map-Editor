@@ -301,9 +301,9 @@ BYTE* Map_GetMapPtrFromClientPt(HWND hWnd, LONG X, LONG Y)
 int Map_CanPaint(HWND hWnd, BYTE Incompatibility)
 {
 	MAPCLIENT	 MapClient;
-	register BYTE	*MapPtr;
-	register BYTE	 MapID;
-	register long	 i,j;
+	BYTE	*MapPtr;
+	BYTE	 MapID;
+	long	 i,j;
 
 	if ((MapCursorMaxWidth != 0)||(MapCursorMaxHeight != 0))
 		{

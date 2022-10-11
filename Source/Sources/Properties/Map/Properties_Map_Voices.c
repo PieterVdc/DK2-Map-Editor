@@ -423,15 +423,15 @@ int Properties_MapVoicesBuildList(NODE *SoundList)
 			case STRRET_WSTR:
 				NameBuffer = (char *)Malloc->lpVtbl->Alloc(Malloc,MAX_PATH);
 				if (!NameBuffer) goto Error_4;
-				wcstombs(NameBuffer,Name.DUMMYUNIONNAME.pOleStr,MAX_PATH);
+				wcstombs(NameBuffer,Name.pOleStr,MAX_PATH);
 				strcpy(SoundPath,NameBuffer);
 				Malloc->lpVtbl->Free(Malloc,NameBuffer);
 				break;
 			case STRRET_OFFSET:
-				strcpy(SoundPath,((char *)Object)+(Name.DUMMYUNIONNAME.uOffset));
+				strcpy(SoundPath,((char *)Object)+(Name.uOffset));
 				break;
 			case STRRET_CSTR:
-				strcpy(SoundPath,Name.DUMMYUNIONNAME.cStr);
+				strcpy(SoundPath,Name.cStr);
 				break;
 			}
 

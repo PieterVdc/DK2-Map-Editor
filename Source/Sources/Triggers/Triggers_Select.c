@@ -544,14 +544,14 @@ int Triggers_SelectCreateNewTrigger(TRIGGER *Trigger, HWND hList, HTREEITEM hPar
 
 	Insert.hParent = hParent;
 	Insert.hInsertAfter = hInsertAfter;
-	Insert.DUMMYUNIONNAME.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT|TVIF_STATE;
-	Insert.DUMMYUNIONNAME.item.pszText = Triggers_FmtTriggerText(Trigger,TextBuffer,TextBuffer+2048);
-	Insert.DUMMYUNIONNAME.item.state = (Trigger->expanded)?TVIS_EXPANDED:0;
-	Insert.DUMMYUNIONNAME.item.stateMask = TVIS_EXPANDED;
-	Insert.DUMMYUNIONNAME.item.iImage = 0;
-	Insert.DUMMYUNIONNAME.item.iSelectedImage = 0;
-	Insert.DUMMYUNIONNAME.item.cChildren = 1;
-	Insert.DUMMYUNIONNAME.item.lParam = (LPARAM)Trigger;
+	Insert.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT|TVIF_STATE;
+	Insert.item.pszText = Triggers_FmtTriggerText(Trigger,TextBuffer,TextBuffer+2048);
+	Insert.item.state = (Trigger->expanded)?TVIS_EXPANDED:0;
+	Insert.item.stateMask = TVIS_EXPANDED;
+	Insert.item.iImage = 0;
+	Insert.item.iSelectedImage = 0;
+	Insert.item.cChildren = 1;
+	Insert.item.lParam = (LPARAM)Trigger;
 	hItem = (HTREEITEM)SendMessage(hList,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Insert);
 	if (!hItem) return(0);
 	if (hItemPtr) *hItemPtr = hItem;
@@ -597,12 +597,12 @@ int Triggers_SelectCreateNewAction(ACTION *Action, HWND hList, HTREEITEM hParent
 
 	Insert.hParent = hParent;
 	Insert.hInsertAfter = hInsertAfter;
-	Insert.DUMMYUNIONNAME.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
-	Insert.DUMMYUNIONNAME.item.pszText = Triggers_FmtActionText(Action,TextBuffer,TextBuffer+2048);
-	Insert.DUMMYUNIONNAME.item.iImage = 1;
-	Insert.DUMMYUNIONNAME.item.iSelectedImage = 1;
-	Insert.DUMMYUNIONNAME.item.cChildren = 0;
-	Insert.DUMMYUNIONNAME.item.lParam = (LPARAM)Action;
+	Insert.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
+	Insert.item.pszText = Triggers_FmtActionText(Action,TextBuffer,TextBuffer+2048);
+	Insert.item.iImage = 1;
+	Insert.item.iSelectedImage = 1;
+	Insert.item.cChildren = 0;
+	Insert.item.lParam = (LPARAM)Action;
 	hItem = (HTREEITEM)SendMessage(hList,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Insert);
 	if (!hItem) return(0);
 	if (hItemPtr) *hItemPtr = hItem;

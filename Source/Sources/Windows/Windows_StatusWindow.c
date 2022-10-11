@@ -83,7 +83,7 @@ void Status_Resize(HWND hWnd, LONG Width)
 void Status_DisplayMapElement(LONG MapX, LONG MapY)
 {
 	MAPTHING	*Thing;
-	register BYTE	*MapPtr;
+	BYTE	*MapPtr;
 	char	 	 Output[256];
 
 	MapPtr = Map.Map+MapX*MAP_CONTROLBYTES+MapY*Map.Properties.Width*MAP_CONTROLBYTES;

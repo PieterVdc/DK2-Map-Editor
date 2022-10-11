@@ -15,6 +15,7 @@
 #include "..\Includes\Prototypes.h"
 #include "..\Includes\Structures.h"
 #include "..\Includes\Texts.h"
+#include "Sounds.h"
 
 extern HINSTANCE	hInstance;
 extern HMENU		hMenu;

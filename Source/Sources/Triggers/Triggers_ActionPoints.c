@@ -76,14 +76,14 @@ void Triggers_PointNew(HWND hDlg, TRIGGERSCTX *Context)
 
 	psp[0].dwSize = sizeof(PROPSHEETPAGE);
 	psp[0].hInstance = hInstance;
-	psp[0].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(7010);
+	psp[0].pszTemplate = MAKEINTRESOURCE(7010);
 	psp[0].pfnDlgProc = Triggers_PointDlgList;
 	psp[0].lParam = (LPARAM)Context;
 	for (Result = 1; Result != 8+1; Result++)
 		{
 		psp[Result].dwSize = sizeof(PROPSHEETPAGE);
 		psp[Result].hInstance = hInstance;
-		psp[Result].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(7010+Result);
+		psp[Result].pszTemplate = MAKEINTRESOURCE(7010+Result);
 		psp[Result].pfnDlgProc = Triggers_PointDlgParams;
 		psp[Result].lParam = (LPARAM)Context;
 		}
@@ -92,10 +92,10 @@ void Triggers_PointNew(HWND hDlg, TRIGGERSCTX *Context)
 	psh->dwFlags = PSH_PROPSHEETPAGE|PSH_USEICONID|PSH_WIZARD;
 	psh->hwndParent = hDlg;
 	psh->hInstance = hInstance;
-	psh->DUMMYUNIONNAME.pszIcon = MAKEINTRESOURCE(1);
+	psh->pszIcon = MAKEINTRESOURCE(1);
 	psh->pszCaption = NULL;
 	psh->nPages = 9;
-	psh->DUMMYUNIONNAME3.ppsp = psp;
+	psh->ppsp = psp;
 
 	if (!Misc_CreateImageList(TrSpecial,&Context->Images,32,32,FALSE)) goto Error_2;
 	if (!Misc_CreateImageList(BadCreatures,&Context->Images,32,32,TRUE)) goto Error_2;

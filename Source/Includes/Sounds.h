@@ -1,4 +1,8 @@
 
+#ifndef EDITOR_SOUNDS_H
+#define EDITOR_SOUNDS_H
+
+#include "DSound.h"
 /*** Identificateurs ****************************************************/
 
 #define SOUND_PAINT		0
@@ -25,3 +29,10 @@ typedef struct MAPSOUNDS {
 	IDirectSoundBuffer	*Paint;
 	IDirectSoundBuffer	*Terrain;
 } MAPSOUNDS;
+
+int Sound_InitializeDirectSound(HWND hWnd);
+void Sound_Reset();
+int Sound_Load(char *Name, IDirectSoundBuffer **NameBuffer);
+void Sound_Play(UINT Identifier, DWORD PaintMode);
+
+#endif //EDITOR_SOUNDS_H

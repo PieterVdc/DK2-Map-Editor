@@ -15,6 +15,7 @@
 #include "..\Includes\Prototypes.h"
 #include "..\Includes\Structures.h"
 #include "..\Includes\Texts.h"
+#include "..\Includes\Sounds.h"
 
 extern MAP		Map;
 extern MAPCURSOR	MapCursor;

@@ -1,4 +1,7 @@
 
+#ifndef EDITOR_MENUS_H
+#define EDITOR_MENUS_H
+
 /*** Structure des menus ************************************************/
 
 typedef struct CUSTOMITEM {
@@ -18,3 +21,7 @@ typedef struct FLAGARRAY {
 	DWORD		 flag;
 } FLAGARRAY;
 
+HMENU CreateMenu_MAINMENU();
+HMENU CreateMenu_CTXMENU();
+
+#endif //EDITOR_MENUS_H

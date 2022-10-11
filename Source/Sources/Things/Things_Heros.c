@@ -169,12 +169,12 @@ int Heros_SelectBuildList(MAPTHINGHEROSBANDCTX *Context)
 		{
 		InsertStruct.hParent = TVI_ROOT;
 		InsertStruct.hInsertAfter = (HTREEITEM)TVI_LAST;
-		InsertStruct.DUMMYUNIONNAME.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_IMAGE|TVIF_SELECTEDIMAGE;
-		InsertStruct.DUMMYUNIONNAME.item.iImage = 2;
-		InsertStruct.DUMMYUNIONNAME.item.iSelectedImage = 2;
+		InsertStruct.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_IMAGE|TVIF_SELECTEDIMAGE;
+		InsertStruct.item.iImage = 2;
+		InsertStruct.item.iSelectedImage = 2;
 		wsprintf(Temp,szBandHero,HerosBand->name,HerosBand->id);
-		InsertStruct.DUMMYUNIONNAME.item.pszText = Temp;
-		InsertStruct.DUMMYUNIONNAME.item.lParam = (LPARAM)HerosBand;
+		InsertStruct.item.pszText = Temp;
+		InsertStruct.item.lParam = (LPARAM)HerosBand;
 		Parent = (HTREEITEM)SendMessage(Context->hlist,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&InsertStruct);
 		if (!Parent)
 			{
@@ -264,13 +264,13 @@ int Heros_SelectBuildList(MAPTHINGHEROSBANDCTX *Context)
 			else
 				wsprintf(Temp,szBandFollower,Name,Hero->level,Temp+2048);
 
-			InsertStruct.DUMMYUNIONNAME.item.pszText = Temp;
-			InsertStruct.DUMMYUNIONNAME.item.iImage = j;
-			InsertStruct.DUMMYUNIONNAME.item.iSelectedImage = j;
+			InsertStruct.item.pszText = Temp;
+			InsertStruct.item.iImage = j;
+			InsertStruct.item.iSelectedImage = j;
 			InsertStruct.hParent = Parent;
 			InsertStruct.hInsertAfter = (HTREEITEM)TVI_LAST;
-			InsertStruct.DUMMYUNIONNAME.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_IMAGE|TVIF_SELECTEDIMAGE;
-			InsertStruct.DUMMYUNIONNAME.item.lParam = 0;
+			InsertStruct.item.mask = TVIF_TEXT|TVIF_PARAM|TVIF_IMAGE|TVIF_SELECTEDIMAGE;
+			InsertStruct.item.lParam = 0;
 			if (!SendMessage(Context->hlist,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&InsertStruct))
 				{
 				GlobalFree(Temp);

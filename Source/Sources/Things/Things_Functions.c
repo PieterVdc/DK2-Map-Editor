@@ -45,7 +45,7 @@ extern CONFIG		Config;
 long Things_GetCreaturesCountWidth(LONG MapX, LONG MapY)
 {
 	BOOL			 Expand;
-	register MAPTHING	*Creatures;
+	MAPTHING	*Creatures;
 	long			 HerosCount = 0;
 	long			 NeutralCount = 0;
 	long			 Keeper1Count = 0;
@@ -546,7 +546,7 @@ int Things_CanPaint(MAP *Map, LONG MapX, LONG MapY)
 int Things_CanPaintEx(MAP *Map, LONG MapX, LONG MapY, DWORD ItemID, UINT Id, UINT Owner, char *ErrorBuffer)
 {
 	BYTE		*MapPtr;
-	register BYTE	 MapID;
+	BYTE	 MapID;
 	int		 i;
 
 	if ((MapX >= Map->Properties.Width)||(MapY >= Map->Properties.Height))

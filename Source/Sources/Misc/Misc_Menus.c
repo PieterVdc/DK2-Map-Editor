@@ -89,7 +89,7 @@ void Misc_DisplayContextMenu(HWND hWnd, UINT Menu, CUSTOMITEM *Items, LONG X, LO
 	HMENU	CtxPopup;
 	int	Result = 0;
 
-	CtxMenu = LoadMenu(hInstance,szCtxMenu);
+	CtxMenu = CreateMenu_CTXMENU();
 	if (CtxMenu)
 		{
 		CtxPopup = GetSubMenu(CtxMenu,Menu);

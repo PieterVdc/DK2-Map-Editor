@@ -2,6 +2,13 @@
 #ifndef EDITORSTRUCTS_INCLUDES
 #define EDITORSTRUCTS_INCLUDES
 
+#include "CameraPaths.h"
+#include "Global.h"
+#include "GlobalVariables.h"
+#include "LastError.h"
+#include "Menus.h"
+#include "Triggers.h"
+
 extern DWORD		ASCII_Triggers[];
 extern DWORD		ASCII_Actions[];
 extern CAMERAPATHDESC	Description[];

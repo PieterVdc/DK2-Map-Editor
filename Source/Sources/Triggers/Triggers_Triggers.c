@@ -84,20 +84,20 @@ void Triggers_TriggerNew(HWND hDlg, TRIGGERSCTX *Context)
 
 	psp[0].dwSize = sizeof(PROPSHEETPAGE);
 	psp[0].hInstance = hInstance;
-	psp[0].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(7100);
+	psp[0].pszTemplate = MAKEINTRESOURCE(7100);
 	psp[0].pfnDlgProc = Triggers_TriggerDlgList;
 	psp[0].lParam = (LPARAM)Context;
 	for (Result = 1; Result != Count+1; Result++)
 		{
 		psp[Result].dwSize = sizeof(PROPSHEETPAGE);
 		psp[Result].hInstance = hInstance;
-		psp[Result].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(Triggers[Result-1].dialog);
+		psp[Result].pszTemplate = MAKEINTRESOURCE(Triggers[Result-1].dialog);
 		psp[Result].pfnDlgProc = Triggers_TriggerDlgParams;
 		psp[Result].lParam = (LPARAM)Context;
 		}
 	psp[Result].dwSize = sizeof(PROPSHEETPAGE);
 	psp[Result].hInstance = hInstance;
-	psp[Result].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(7199);
+	psp[Result].pszTemplate = MAKEINTRESOURCE(7199);
 	psp[Result].pfnDlgProc = Triggers_TriggerDlgRepeat;
 	psp[Result].lParam = (LPARAM)Context;
 
@@ -105,10 +105,10 @@ void Triggers_TriggerNew(HWND hDlg, TRIGGERSCTX *Context)
 	psh->dwFlags = PSH_PROPSHEETPAGE|PSH_USEICONID|PSH_WIZARD;
 	psh->hwndParent = hDlg;
 	psh->hInstance = hInstance;
-	psh->DUMMYUNIONNAME.pszIcon = MAKEINTRESOURCE(1);
+	psh->pszIcon = MAKEINTRESOURCE(1);
 	psh->pszCaption = NULL;
 	psh->nPages = Count+2;
-	psh->DUMMYUNIONNAME3.ppsp = psp;
+	psh->ppsp = psp;
 
 	if (!Misc_CreateImageList(TrSpecial,&Context->Images,32,32,FALSE)) goto Error_2;
 	if (!Misc_CreateImageList(BadCreatures,&Context->Images,32,32,TRUE)) goto Error_2;
@@ -1940,10 +1940,10 @@ int Triggers_TriggerDlgParamsSave(HWND hDlg,TRIGGERSCTX *Context)
 	NewTrigger = GlobalAlloc(GPTR,sizeof(TRIGGER));
 	if (!NewTrigger) goto Error_1;
 
-	Parent.DUMMYUNIONNAME.item.mask = TVIF_PARAM;
-	Parent.DUMMYUNIONNAME.item.lParam = 0;
-	Parent.DUMMYUNIONNAME.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_CARET,(LPARAM)TVI_ROOT);
-	if (Parent.DUMMYUNIONNAME.item.hItem) SendMessage(Context->List,TVM_GETITEM,(WPARAM)0,(LPARAM)&Parent.DUMMYUNIONNAME.item);
+	Parent.item.mask = TVIF_PARAM;
+	Parent.item.lParam = 0;
+	Parent.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_CARET,(LPARAM)TVI_ROOT);
+	if (Parent.item.hItem) SendMessage(Context->List,TVM_GETITEM,(WPARAM)0,(LPARAM)&Parent.item);
 
 	//--- Modifie un déclencheur ---
 
@@ -1951,41 +1951,41 @@ int Triggers_TriggerDlgParamsSave(HWND hDlg,TRIGGERSCTX *Context)
 		{
 		GlobalFree(NewTrigger);
 		CopyMemory(Context->TriggerCtx.SrceTrigger,&Context->TriggerCtx.TempTrigger,sizeof(TRIGGER));
-		Parent.DUMMYUNIONNAME.item.mask = TVIF_TEXT;
-		Parent.DUMMYUNIONNAME.item.pszText = Triggers_FmtTriggerText(Context->TriggerCtx.SrceTrigger,TextBuffer,TextBuffer+2048);
-		if (Parent.DUMMYUNIONNAME.item.lParam) SendMessage(Context->List,TVM_SETITEM,(WPARAM)0,(LPARAM)&Parent.DUMMYUNIONNAME.item);
+		Parent.item.mask = TVIF_TEXT;
+		Parent.item.pszText = Triggers_FmtTriggerText(Context->TriggerCtx.SrceTrigger,TextBuffer,TextBuffer+2048);
+		if (Parent.item.lParam) SendMessage(Context->List,TVM_SETITEM,(WPARAM)0,(LPARAM)&Parent.item);
 		goto Done;
 		}
 
 	//--- Ajoute ou insère un déclencheur ---
 
-	if ((Context->Insert)&&(Parent.DUMMYUNIONNAME.item.lParam))
+	if ((Context->Insert)&&(Parent.item.lParam))
 		{
 		CopyMemory(NewTrigger,&Context->TriggerCtx.TempTrigger,sizeof(TRIGGER));
 		NewTrigger->id = Triggers_GetTriggerFreeId();
-		Parent.hParent = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PARENT,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
-		Parent.hInsertAfter = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PREVIOUS,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
+		Parent.hParent = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PARENT,(LPARAM)Parent.item.hItem);
+		Parent.hInsertAfter = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PREVIOUS,(LPARAM)Parent.item.hItem);
 		if (!Parent.hInsertAfter) Parent.hInsertAfter = TVI_FIRST;
-		Parent.DUMMYUNIONNAME.item.hItem = NULL;
-		Parent.DUMMYUNIONNAME.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
-		Parent.DUMMYUNIONNAME.item.pszText = Triggers_FmtTriggerText(NewTrigger,TextBuffer,TextBuffer+2048);
-		Parent.DUMMYUNIONNAME.item.iImage = 0;
-		Parent.DUMMYUNIONNAME.item.iSelectedImage = 0;
-		Parent.DUMMYUNIONNAME.item.cChildren = 1;
-		Parent.DUMMYUNIONNAME.item.lParam = (LPARAM)NewTrigger;
-		Parent.DUMMYUNIONNAME.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Parent);
-		if (!Parent.DUMMYUNIONNAME.item.hItem) goto Error_2;
+		Parent.item.hItem = NULL;
+		Parent.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
+		Parent.item.pszText = Triggers_FmtTriggerText(NewTrigger,TextBuffer,TextBuffer+2048);
+		Parent.item.iImage = 0;
+		Parent.item.iSelectedImage = 0;
+		Parent.item.cChildren = 1;
+		Parent.item.lParam = (LPARAM)NewTrigger;
+		Parent.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Parent);
+		if (!Parent.item.hItem) goto Error_2;
 		}
 	else
 		{
 		CopyMemory(NewTrigger,&Context->TriggerCtx.TempTrigger,sizeof(TRIGGER));
 		NewTrigger->id = Triggers_GetTriggerFreeId();
-		if ((Parent.DUMMYUNIONNAME.item.lParam)&&(!Context->Root))
+		if ((Parent.item.lParam)&&(!Context->Root))
 			{
-			if (((NODE *)Parent.DUMMYUNIONNAME.item.lParam)->type == TYPE_TRIGGER)
-				Parent.hParent = Parent.DUMMYUNIONNAME.item.hItem;
+			if (((NODE *)Parent.item.lParam)->type == TYPE_TRIGGER)
+				Parent.hParent = Parent.item.hItem;
 			else
-				Parent.hParent = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PARENT,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
+				Parent.hParent = (HTREEITEM)SendMessage(Context->List,TVM_GETNEXTITEM,(WPARAM)TVGN_PARENT,(LPARAM)Parent.item.hItem);
 			Parent.hInsertAfter = TVI_LAST;
 			}
 		else
@@ -1993,31 +1993,31 @@ int Triggers_TriggerDlgParamsSave(HWND hDlg,TRIGGERSCTX *Context)
 			Parent.hParent = TVI_ROOT;
 			Parent.hInsertAfter = TVI_LAST;
 			}
-		Parent.DUMMYUNIONNAME.item.hItem = NULL;
-		Parent.DUMMYUNIONNAME.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
-		Parent.DUMMYUNIONNAME.item.pszText = Triggers_FmtTriggerText(NewTrigger,TextBuffer,TextBuffer+2048);
-		Parent.DUMMYUNIONNAME.item.iImage = 0;
-		Parent.DUMMYUNIONNAME.item.iSelectedImage = 0;
-		Parent.DUMMYUNIONNAME.item.cChildren = 1;
-		Parent.DUMMYUNIONNAME.item.lParam = (LPARAM)NewTrigger;
-		Parent.DUMMYUNIONNAME.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Parent);
-		if (!Parent.DUMMYUNIONNAME.item.hItem) goto Error_2;
+		Parent.item.hItem = NULL;
+		Parent.item.mask = TVIF_PARAM|TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT;
+		Parent.item.pszText = Triggers_FmtTriggerText(NewTrigger,TextBuffer,TextBuffer+2048);
+		Parent.item.iImage = 0;
+		Parent.item.iSelectedImage = 0;
+		Parent.item.cChildren = 1;
+		Parent.item.lParam = (LPARAM)NewTrigger;
+		Parent.item.hItem = (HTREEITEM)SendMessage(Context->List,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&Parent);
+		if (!Parent.item.hItem) goto Error_2;
 		}
 
 	//--- Lie le déclencheur aux entrée précédentes ---
 
 	List_AddEntry((NODE *)NewTrigger,&MapTriggers);
-	if (!Triggers_SelectLink(NewTrigger,Context->TriggerCtx.ParentPoint,Parent.DUMMYUNIONNAME.item.hItem,Context)) goto Error_3;
+	if (!Triggers_SelectLink(NewTrigger,Context->TriggerCtx.ParentPoint,Parent.item.hItem,Context)) goto Error_3;
 
 	#if (DEBUG_EVENTS)
-	Parent.DUMMYUNIONNAME.item.mask = TVIF_TEXT;
-	Parent.DUMMYUNIONNAME.item.pszText = Triggers_FmtTriggerText(NewTrigger,TextBuffer,TextBuffer+2048);
-	SendMessage(Context->List,TVM_SETITEM,(WPARAM)0,(LPARAM)&Parent.DUMMYUNIONNAME.item);
+	Parent.item.mask = TVIF_TEXT;
+	Parent.item.pszText = Triggers_FmtTriggerText(NewTrigger,TextBuffer,TextBuffer+2048);
+	SendMessage(Context->List,TVM_SETITEM,(WPARAM)0,(LPARAM)&Parent.item);
 	#endif
 
 //--- Terminé... ----
 
-Done:	SendMessage(Context->List,TVM_SELECTITEM,(WPARAM)TVGN_CARET,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
+Done:	SendMessage(Context->List,TVM_SELECTITEM,(WPARAM)TVGN_CARET,(LPARAM)Parent.item.hItem);
 	GlobalFree(TextBuffer);
 	MapChanges++;
 	return(1);
@@ -2025,7 +2025,7 @@ Done:	SendMessage(Context->List,TVM_SELECTITEM,(WPARAM)TVGN_CARET,(LPARAM)Parent
 //--- Erreurs ---
 
 Error_3:List_RemEntry((NODE *)NewTrigger);
-	SendMessage(Context->List,TVM_DELETEITEM,(WPARAM)0,(LPARAM)Parent.DUMMYUNIONNAME.item.hItem);
+	SendMessage(Context->List,TVM_DELETEITEM,(WPARAM)0,(LPARAM)Parent.item.hItem);
 Error_2:GlobalFree(NewTrigger);
 Error_1:GlobalFree(TextBuffer);
 Error_0:Misc_MessageBoxExt(hDlg,szTriggersNewTriggerErr,NULL,szMessageBoxExtOk,MB_ICONHAND);

@@ -1,4 +1,9 @@
 
+#ifndef EDITOR_TRIGGERS_H
+#define EDITOR_TRIGGERS_H
+
+#include "Map.h"
+
 /*** Définitions globales ***********************************************/
 
 #define TRIGGERIMAGE_CREATURE	0
@@ -320,3 +325,4 @@ typedef struct TRIGGERSCTX {
 	TRIGGERSACCTX	 ActionCtx;
 } TRIGGERSCTX;
 
+#endif //EDITOR_TRIGGERS_H

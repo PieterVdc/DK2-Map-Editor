@@ -254,7 +254,7 @@ void Map_DisplayStats(HWND hWnd)
 		{
 		psp[Result].dwSize = sizeof(PROPSHEETPAGE);
 		psp[Result].hInstance = hInstance;
-		psp[Result].DUMMYUNIONNAME.pszTemplate = MAKEINTRESOURCE(6901+Result);
+		psp[Result].pszTemplate = MAKEINTRESOURCE(6901+Result);
 		psp[Result].pfnDlgProc = Map_StatsProc;
 		psp[Result].lParam = (LPARAM)Context;
 		}
@@ -263,10 +263,10 @@ void Map_DisplayStats(HWND hWnd)
 	psh->dwFlags = PSH_PROPSHEETPAGE|PSH_USEICONID;
 	psh->hwndParent = hWnd;
 	psh->hInstance = hInstance;
-	psh->DUMMYUNIONNAME.pszIcon = MAKEINTRESOURCE(1);
+	psh->pszIcon = MAKEINTRESOURCE(1);
 	psh->pszCaption = szMapStatsTitle;
 	psh->nPages = 4;
-	psh->DUMMYUNIONNAME3.ppsp = psp;
+	psh->ppsp = psp;
 
 	Result = PropertySheet(psh);
 	if (Result == -1) Misc_PrintError(hWnd,szDialogErr,NULL,MB_ICONHAND);
@@ -365,7 +365,7 @@ void Map_StatsInit(HWND hDlg, PROPSHEETPAGE *Page)
 
 	Map_CreateStats(Context);
 
-	switch((LONG)Page->DUMMYUNIONNAME.pszTemplate)
+	switch((LONG)Page->pszTemplate)
 		{
 		case 6901:
 			X = GetTickCount()-TickCount;

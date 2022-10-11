@@ -75,8 +75,8 @@ void Zoom_Clicked()
 
 void Zoom_Change(UINT ZoomID)
 {
-	register LONG	ZX;
-	register LONG	ZY;
+	LONG	ZX;
+	LONG	ZY;
 
 	switch(ZoomID)
 		{
@@ -138,8 +138,8 @@ void Zoom_Change(UINT ZoomID)
 
 int Zoom_GetUsed()
 {
-	register LONG	ZX;
-	register LONG	ZY;
+	LONG	ZX;
+	LONG	ZY;
 
 	ZX = MapZoomCX;
 	ZY = MapZoomCY;

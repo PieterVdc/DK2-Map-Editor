@@ -2951,4 +2951,6 @@ extern char	szMapGlobalVariables[];
 extern char	szMapMoveThing[];
 extern char	szUndoLevels[];
 extern char	szUndoLevelsChoices[];
-extern char	szUndoErr[];#endif
+extern char	szUndoErr[];
+
+#endif

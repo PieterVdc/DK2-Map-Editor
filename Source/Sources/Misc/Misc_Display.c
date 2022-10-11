@@ -699,17 +699,17 @@ int Misc_CreateCreaturesTreeList(TREELIST *List)
 	TreeImage = 0;
 	TreeItem.hParent = TVI_ROOT;
 	TreeItem.hInsertAfter = TVI_LAST;
-	TreeItem.DUMMYUNIONNAME.item.mask = TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT|TVIF_PARAM;
-	TreeItem.DUMMYUNIONNAME.item.cChildren = 1;
-	TreeItem.DUMMYUNIONNAME.item.lParam = NULL;
+	TreeItem.item.mask = TVIF_CHILDREN|TVIF_IMAGE|TVIF_SELECTEDIMAGE|TVIF_TEXT|TVIF_PARAM;
+	TreeItem.item.cChildren = 1;
+	TreeItem.item.lParam = NULL;
 
 	//--- Groupes de créatures ---
 
 	if (List->Flags&LIST_BADS)
 		{
-		TreeItem.DUMMYUNIONNAME.item.pszText = szBadCreatures;
-		TreeItem.DUMMYUNIONNAME.item.iImage = TreeImage;
-		TreeItem.DUMMYUNIONNAME.item.iSelectedImage = TreeImage++;
+		TreeItem.item.pszText = szBadCreatures;
+		TreeItem.item.iImage = TreeImage;
+		TreeItem.item.iSelectedImage = TreeImage++;
 		TreeBads = (HTREEITEM)SendMessage(List->hTree,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&TreeItem);
 		if (!TreeBads) return(0);
 		}
@@ -718,9 +718,9 @@ int Misc_CreateCreaturesTreeList(TREELIST *List)
 
 	if (List->Flags&LIST_ELITES)
 		{
-		TreeItem.DUMMYUNIONNAME.item.pszText = szBadCreaturesElite;
-		TreeItem.DUMMYUNIONNAME.item.iImage = TreeImage;
-		TreeItem.DUMMYUNIONNAME.item.iSelectedImage = TreeImage++;
+		TreeItem.item.pszText = szBadCreaturesElite;
+		TreeItem.item.iImage = TreeImage;
+		TreeItem.item.iSelectedImage = TreeImage++;
 		TreeElites = (HTREEITEM)SendMessage(List->hTree,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&TreeItem);
 		if (!TreeElites) return(0);
 		}
@@ -729,9 +729,9 @@ int Misc_CreateCreaturesTreeList(TREELIST *List)
 
 	if (List->Flags&LIST_HEROES)
 		{
-		TreeItem.DUMMYUNIONNAME.item.pszText = szGoodCreatures;
-		TreeItem.DUMMYUNIONNAME.item.iImage = TreeImage;
-		TreeItem.DUMMYUNIONNAME.item.iSelectedImage = TreeImage++;
+		TreeItem.item.pszText = szGoodCreatures;
+		TreeItem.item.iImage = TreeImage;
+		TreeItem.item.iSelectedImage = TreeImage++;
 		TreeHeros = (HTREEITEM)SendMessage(List->hTree,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&TreeItem);
 		if (!TreeHeros) return(0);
 		}
@@ -740,17 +740,17 @@ int Misc_CreateCreaturesTreeList(TREELIST *List)
 
 	//--- Liste des créatures dans chaque groupe ---
 
-	TreeItem.DUMMYUNIONNAME.item.cChildren = 0;
+	TreeItem.item.cChildren = 0;
 	if (List->Flags&LIST_BADS)
 		{
 		TreeItem.hParent = TreeBads;
 		for (i = 0; BadCreatures[i].Id != 0; i++)
 			{
-			TreeItem.DUMMYUNIONNAME.item.iImage = TreeImage;
-			TreeItem.DUMMYUNIONNAME.item.iSelectedImage = TreeImage++;
-			TreeItem.DUMMYUNIONNAME.item.pszText = BadCreatures[i].Name;
-			if (List->Flags&LIST_LPARAMPTR) TreeItem.DUMMYUNIONNAME.item.lParam = (LPARAM)&BadCreatures[i];
-			if (List->Flags&LIST_LPARAMID)  TreeItem.DUMMYUNIONNAME.item.lParam = (LPARAM)BadCreatures[i].Id;
+			TreeItem.item.iImage = TreeImage;
+			TreeItem.item.iSelectedImage = TreeImage++;
+			TreeItem.item.pszText = BadCreatures[i].Name;
+			if (List->Flags&LIST_LPARAMPTR) TreeItem.item.lParam = (LPARAM)&BadCreatures[i];
+			if (List->Flags&LIST_LPARAMID)  TreeItem.item.lParam = (LPARAM)BadCreatures[i].Id;
 			TreeInserted = (HTREEITEM)SendMessage(List->hTree,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&TreeItem);
 			if (!TreeInserted) return(0);
 			if ((List->SelectedItem)&&(List->Selected == BadCreatures[i].Id)) *List->SelectedItem = TreeInserted;
@@ -764,11 +764,11 @@ int Misc_CreateCreaturesTreeList(TREELIST *List)
 		TreeItem.hParent = TreeElites;
 		for (i = 0; BadElites[i].Id != 0; i++)
 			{
-			TreeItem.DUMMYUNIONNAME.item.iImage = TreeImage;
-			TreeItem.DUMMYUNIONNAME.item.iSelectedImage = TreeImage++;
-			TreeItem.DUMMYUNIONNAME.item.pszText = BadElites[i].Name;
-			if (List->Flags&LIST_LPARAMPTR) TreeItem.DUMMYUNIONNAME.item.lParam = (LPARAM)&BadElites[i];
-			if (List->Flags&LIST_LPARAMID)  TreeItem.DUMMYUNIONNAME.item.lParam = (LPARAM)BadElites[i].Id;
+			TreeItem.item.iImage = TreeImage;
+			TreeItem.item.iSelectedImage = TreeImage++;
+			TreeItem.item.pszText = BadElites[i].Name;
+			if (List->Flags&LIST_LPARAMPTR) TreeItem.item.lParam = (LPARAM)&BadElites[i];
+			if (List->Flags&LIST_LPARAMID)  TreeItem.item.lParam = (LPARAM)BadElites[i].Id;
 			TreeInserted = (HTREEITEM)SendMessage(List->hTree,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&TreeItem);
 			if (!TreeInserted) return(0);
 			if ((List->SelectedItem)&&(List->Selected == BadElites[i].Id)) *List->SelectedItem = TreeInserted;
@@ -782,11 +782,11 @@ int Misc_CreateCreaturesTreeList(TREELIST *List)
 		TreeItem.hParent = TreeHeros;
 		for (i = 0; Heros[i].Id != 0; i++)
 			{
-			TreeItem.DUMMYUNIONNAME.item.iImage = TreeImage;
-			TreeItem.DUMMYUNIONNAME.item.iSelectedImage = TreeImage++;
-			TreeItem.DUMMYUNIONNAME.item.pszText = Heros[i].Name;
-			if (List->Flags&LIST_LPARAMPTR) TreeItem.DUMMYUNIONNAME.item.lParam = (LPARAM)&Heros[i];
-			if (List->Flags&LIST_LPARAMID)  TreeItem.DUMMYUNIONNAME.item.lParam = (LPARAM)Heros[i].Id;
+			TreeItem.item.iImage = TreeImage;
+			TreeItem.item.iSelectedImage = TreeImage++;
+			TreeItem.item.pszText = Heros[i].Name;
+			if (List->Flags&LIST_LPARAMPTR) TreeItem.item.lParam = (LPARAM)&Heros[i];
+			if (List->Flags&LIST_LPARAMID)  TreeItem.item.lParam = (LPARAM)Heros[i].Id;
 			TreeInserted = (HTREEITEM)SendMessage(List->hTree,TVM_INSERTITEM,(WPARAM)0,(LPARAM)&TreeItem);
 			if (!TreeInserted) return(0);
 			if ((List->SelectedItem)&&(List->Selected == Heros[i].Id)) *List->SelectedItem = TreeInserted;
