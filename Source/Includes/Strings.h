@@ -362,7 +362,7 @@
 #define DIALOG_MAPCPULEVEL "All creatures have reached level:"
 #define DIALOG_MAPCPUOWN "Guardian has at least"
 #define DIALOG_MAPCPUTHREAT "The threat represented by the creatures is"
-#define DIALOG_MAPCPUTHREAT2 "% greater than that of the enemy".
+#define DIALOG_MAPCPUTHREAT2 "% greater than that of the enemy"
 #define DIALOG_MAPCPUALLROOMS "All the rooms have been built"
 #define DIALOG_MAPCPUALLSPELLS "All spells have been found"
 #define DIALOG_MAPCPUSTYLE "Type of attack"
@@ -379,7 +379,7 @@
 #define DIALOG_MAPCPUBTHREAT1 "The threat represented by the dropped creatures must match"
 #define DIALOG_MAPCPUBTHREAT2 "% of the threat represented by the enemy"
 #define DIALOG_MAPCPUBPELL "Use spells"
-#define DIALOG_MAPCPUBJAIL1 "Attempt to imprison" 
+#define DIALOG_MAPCPUBJAIL1 "Attempt to imprison"
 #define DIALOG_MAPCPUBJAIL2 "% of enemy creatures"
 #define DIALOG_MAPCPUBPULLOUT "Remove creatures from the battle if the enemy is outnumbered and no reinforcements are available"
 #define DIALOG_MAPCPUBHEALTH1 "If creature's vitality is equal to "
@@ -463,7 +463,7 @@
 #define DIALOG_MAPOPTIONSSECRET "Secret level"
 #define DIALOG_MAPOPTIONSSPECIAL "Special level"
 #define DIALOG_MAPOPTIONSMULTI "Multiplayer level"
-#define DIALOG_MAPOPTIONSSINGLE "Skillful level" 
+#define DIALOG_MAPOPTIONSSINGLE "Skillful level"
 #define DIALOG_MAPOPTIONSPETDONJON "Small dungeon"
 #define DIALOG_MAPOPTIONSPARAMS "Settings"
 #define DIALOG_MAPOPTIONSJAIL "Always Imprison Enemies"
@@ -597,7 +597,7 @@
 #define DIALOG_MAPGCRPARAMSEFFECTS "Effects"
 #define DIALOG_MAPGCRPARAMSSLAP "During a move"
 #define DIALOG_MAPGCRPARAMSHEALTH "During a regeneration"
-#define DIALOG_MAPGCRPARAMSENTRANCE "When entering a gate".
+#define DIALOG_MAPGCRPARAMSENTRANCE "When entering a gate"
 #define DIALOG_MAPGCRPARAMSDEATH "At death"
 #define DIALOG_MAPGCRPARAMSATTRACT "This creature is attracted..."
 #define DIALOG_MAPGCRPARAMSATTRACT1 "...by..."
@@ -960,7 +960,7 @@
 #define DIALOG_ACTIONSLIGHT "Turn on/off stars/flashing on a button"
 #define DIALOG_ACTIONSLIGHTLIST "List of buttons"
 #define DIALOG_ACTIONSLIGHTSET "Enable Stars/Blink"
-#define DIALOG_ACTIONSLIGHTCLEAR "Disable stars/blinking".
+#define DIALOG_ACTIONSLIGHTCLEAR "Disable stars/blinking"
 #define DIALOG_ACTIONSLIGHTTIME "Flashing duration"
 #define DIALOG_ACTIONSSAY "Say something"
 #define DIALOG_ACTIONSSAYNAME "Voice identifier"
@@ -1019,7 +1019,7 @@
 #define DIALOG_ACTIONSTIMERSPEECH "Enable/disable voice countdown of remaining time"
 #define DIALOG_ACTIONSTIMERSPEECHON "Enable the voice countdown"
 #define DIALOG_ACTIONSTIMERSPEECHOFF "Disable voice countdown"
-#define DIALOG_ACTIONSCAMERAPATH "Execute a predefined camera movement".
+#define DIALOG_ACTIONSCAMERAPATH "Execute a predefined camera movement"
 #define DIALOG_ACTIONSCAMERAPATHAREA "Zone from which the movement is triggered"
 #define DIALOG_ACTIONSCAMERAPATHID "Identifier of the motion"
 #define DIALOG_ACTIONSCAMERAPATHCEON "Display the ceiling"
