@@ -73,7 +73,7 @@ char szCfgCPUAI2[] = "Psychopath";
 char szCfgCPUAI3[] = "Unshakable";
 char szCfgCPUAI4[] = "Wise old man";
 char szCfgCPUAI5[] = "Idiot";
-char szCfgCPUAI6[] = "Maton";
+char szCfgCPUAI6[] = "Guard";
 char szCfgCPUAI7[] = "Tough guy";
 char szCfgCPUAI8[] = "Paranoid";
 
@@ -81,7 +81,7 @@ char szCfgVoicesNoFile[] = "<No file>";
 char szCfgVoicesError[] = "Reading the file failed!";
 char szCfgVoicesNoSuchSound[] = "The selected identifier does not match any sound!";
 char szCfgVoicesBadSound[] = "The sound does not contain the required data!";
-char szCfgVoicesList[] = "%04ld -- "%s\" (%ld bytes)";
+char szCfgVoicesList[] = "%04ld -- \"%s\" (%ld bytes)";
 char szCfgVoicesTemp[] = "A temporary file could not be deleted. To delete the file, quit this program and select [Ok]. To continue without deleting the file, select [Cancel]";
 
 char szCfgTextsBadFile[] = "An error occurred while accessing the corresponding text file!";
@@ -289,7 +289,6 @@ char szMapVarD3[] = "Minimum duration of support in combat (in seconds)";
 char szMapVarD4[] = "Maximum duration of support during fights (in seconds)";
 char szMapVarGH[] = "Indirect alteration of the parameters of a creature";
 char szMapVarA4[] = "Percentage increase of work after a hit";
-char szMapVar8E[] = "Percentage increase in work rate of creatures with the same type as the one that was tortured";
 char szMapVar8E[] = "Percentage increase in work rate of creatures with the same type as the one that was tortured";
 char szMapVar8F[] = "Percentage increase in work rate of creatures with the same type as the one that won the jackpot";
 char szMapVarA5[] = "Duration of work increase after a hit (in seconds)";
